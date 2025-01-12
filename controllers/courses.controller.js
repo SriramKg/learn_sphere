@@ -1,4 +1,4 @@
-const {getAllCourseFromModel, getCourseByIdFromModel, createCourseFromModel, updateCourseFromModel, deleteCourseFromModel} = require("../services/courses.service");
+const {getAllCourseFromModel, getCourseByIdFromModel, createCourseFromModel, updateCourseFromModel, deleteCourseFromModel, getCourseByCourseId} = require("../services/courses.service");
 
 async function getAllCourses(req, res) {
   try {
@@ -16,6 +16,19 @@ async function getAllCourses(req, res) {
 async function getCourseById(req, res) {
   try {
     const { message, status } = await getCourseByIdFromModel(req);
+    res.status(status).send({
+      message,
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error " + error.message,
+    });
+  }
+}
+
+async function getCourseByCourse(req, res) {
+  try {
+    const { message, status } = await getCourseByCourseId(req);
     res.status(status).send({
       message,
     });
@@ -65,4 +78,4 @@ async function deleteCourse(req, res) {
   }
 }
 
-module.exports = { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse };
+module.exports = { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse, getCourseByCourse };

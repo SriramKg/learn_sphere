@@ -82,6 +82,8 @@ async function registerNewUser(body) {
             findUser.profile_data.first_name,
           status: 200,
           token: token,
+          role: findUser.role,
+          id: findUser._id
         };
       }
     } catch (error) {

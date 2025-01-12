@@ -15,10 +15,12 @@ async function registerUser(req, res) {
 
 async function loginUser(req, res) {
     try {
-      const { message, status, token } = await loginAUser(req.body);
+      const { message, status, token, role, id} = await loginAUser(req.body);
       res.status(status).send({
         message,
         token,
+        role,
+        id
       });
     } catch (error) {
       res.status(500).send({

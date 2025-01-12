@@ -15,7 +15,24 @@ async function getAllCourseFromModel() {
 async function getCourseByIdFromModel(req) {
     try {
         const { id } = req.params;
-        const course = await courseModel.findById(id);
+        console.log(id);
+        const course = await courseModel.find({ instructor_id: id });
+        console.log(course);
+        return {
+        message: course,
+        status: 200,
+        };
+    } catch (error) {
+        throw new Error("Course not found " + error);
+    }
+}
+
+async function getCourseByCourseId(req) {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const course = await courseModel.find({ _id: id });
+        console.log(course);
         return {
         message: course,
         status: 200,
@@ -39,7 +56,7 @@ async function createCourseFromModel(body) {
         description,
         price,
         status,
-        instructor_id,
+        instructor_id
         });
         await newCourse.save();
         return {
@@ -57,6 +74,7 @@ async function updateCourseFromModel(req) {
         const { id } = req.params;
         const {title, description, price, status, instructor_id } = req.body;
         const course = await courseModel.findById(id);
+
         if (!course) {
         return {
             message: "Course not found",
@@ -97,4 +115,4 @@ async function deleteCourseFromModel(req) {
     }
 }
 
-module.exports = {getAllCourseFromModel, getCourseByIdFromModel, createCourseFromModel, updateCourseFromModel, deleteCourseFromModel};
+module.exports = {getAllCourseFromModel, getCourseByIdFromModel, createCourseFromModel, updateCourseFromModel, deleteCourseFromModel, getCourseByCourseId};

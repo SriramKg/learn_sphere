@@ -12,10 +12,12 @@ dotenv.config();
 const userRoutes = require("./routes/users.routes");
 const courseRoutes = require("./routes/courses.routes");
 const enrollRoutes = require("./routes/enrollments.routes");
+const moduleRoutes = require("./routes/modules.routes");
 
 app.use("/api/auth", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/enrollments", enrollRoutes);
+app.use("/api/modules", moduleRoutes);
 
 const connectionStr = process.env.MONGO_URI;
 const db = process.env.DB_NAME;
