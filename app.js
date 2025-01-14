@@ -13,11 +13,13 @@ const userRoutes = require("./routes/users.routes");
 const courseRoutes = require("./routes/courses.routes");
 const enrollRoutes = require("./routes/enrollments.routes");
 const moduleRoutes = require("./routes/modules.routes");
+const lessonRoutes = require("./routes/lessons.routes");
 
 app.use("/api/auth", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/enrollments", enrollRoutes);
 app.use("/api/modules", moduleRoutes);
+app.use("/api/lessons", lessonRoutes);
 
 const connectionStr = process.env.MONGO_URI;
 const db = process.env.DB_NAME;

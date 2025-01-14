@@ -42,6 +42,10 @@ const Register = () => {
         }
     }
 
+    const handleLogin = () => {
+        navigate('/login');
+    };
+
     return ( 
         <Box sx={{ maxWidth: 400, margin: "auto", textAlign: "center" }}>
             <Typography variant="h4">Register</Typography>
@@ -126,6 +130,7 @@ const Register = () => {
                     onChange={handleChange}
                 />
                 <Button type="submit" variant="contained" fullWidth sx={{ mt: 2}}> Register </Button>    
+                <Button onClick={handleLogin} variant="contained" fullWidth sx={{ mt: 2}}> Login </Button>
 
             </form>
         </Box>

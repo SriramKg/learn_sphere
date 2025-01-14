@@ -19,10 +19,24 @@ async function createModuleFromModel(req) {
         return {
             message: "Module created successfully " + newModule._id,
             status: 201,
+            module: newModule
         };
     } catch (error) {
         throw new Error("Module did not create ! " + error);
     }
 }
 
-module.exports = { createModuleFromModel };
+async function getModuleForCourseFromModel(req) {
+    try {
+        const { id } = req.params;
+        const modules = await moduleModel.find({ course_id: id });
+        return {
+            message: modules,
+            status: 200,
+        };
+    } catch (error) {
+        throw new Error("Module not found ! " + error);
+    }
+}
+
+module.exports = { createModuleFromModel, getModuleForCourseFromModel};
